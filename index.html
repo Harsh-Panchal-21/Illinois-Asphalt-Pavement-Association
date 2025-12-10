@@ -228,140 +228,222 @@
             cursor: pointer;
         }
 
-        /* Hero */
-        .hero {
-            max-width: 1200px;
-            margin: 1.5rem auto 2.5rem;
-            padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
-            gap: 2.5rem;
-            align-items: center;
-        }
+/* ===========================
+   FULL-WIDTH HERO SLIDESHOW
+   =========================== */
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.15rem 0.3rem;
-            border-radius: 999px;
-            background: rgba(17, 24, 39, 0.04);
-            border: 1px solid rgba(148, 163, 184, 0.7);
-            gap: 0.3rem;
-            font-size: 0.75rem;
-            margin-bottom: 1rem;
-        }
+.hero-full {
+    padding: 0;
+    margin: 0 0 2.5rem;
+}
 
-        .hero-badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: #22c55e;
-        }
+.hero-full-slider {
+    position: relative;
+    width: 100%;
+    height: clamp(360px, 80vh, 620px); /* nice tall hero */
+    overflow: hidden;
+    background: #000;
+}
 
-        .hero-badge-label {
-            text-transform: uppercase;
-            letter-spacing: 0.14em;
-            font-weight: 600;
-            color: #4b5563;
-        }
+/* slides */
+.hero-full-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
 
-        .hero-title {
-            font-size: clamp(2.1rem, 3.2vw + 1rem, 3.1rem);
-            line-height: 1.12;
-            margin: 0 0 1rem;
-        }
+.hero-full-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-        .hero-title span.highlight {
-            background: linear-gradient(120deg, #f97316, #fb923c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+/* image – full width, no blur, no scale */
+.hero-full-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none !important;
+    transform: none !important;
+}
 
-        .hero-text {
-            font-size: 0.98rem;
-            max-width: 34rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
+/* text/card overlay */
+.hero-full-content {
+    position: absolute;
+    left: min(5vw, 3.5rem);
+    bottom: min(10vh, 3rem);
+    max-width: 650px;
+    background: rgba(15, 23, 42, 0.78); /* dark glass card, image still clear */
+    color: #f9fafb;
+    padding: 1.4rem 1.7rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.45);
+}
 
-        .hero-actions {
-            margin-top: 1.6rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            align-items: center;
-        }
+/* only first slide has full content now – others can be empty */
+.hero-full-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.16rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.9);
+    background: rgba(15, 23, 42, 0.85);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.7rem;
+}
 
-        .hero-meta {
-            margin-top: 1.2rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            font-size: 0.83rem;
-            color: #6b7280;
-        }
+.hero-full-title {
+    font-size: clamp(2.1rem, 3.2vw + 1rem, 3rem);
+    line-height: 1.15;
+    margin: 0 0 0.6rem;
+}
 
-        .hero-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
+.hero-full-title .highlight {
+    background: linear-gradient(120deg, #f97316, #fb923c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
 
-        .hero-meta-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 999px;
-            background: #e5e7eb;
-        }
+.hero-full-text {
+    font-size: 0.98rem;
+    color: #e5e7eb;
+    margin: 0 0 1rem;
+    max-width: 32rem;
+}
 
-        .hero-card {
-            background: radial-gradient(circle at top left, #e5f0ff 0, #ffffff 45%, #fdf2e9 100%);
-            border-radius: 1.5rem;
-            box-shadow: var(--shadow-soft);
-            padding: 1.6rem 1.7rem;
-            border: 1px solid rgba(148, 163, 184, 0.4);
-        }
+.hero-full-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+}
 
-        .hero-card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-        }
+.hero-full-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    font-size: 0.8rem;
+    color: #cbd5f5;
+}
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 0.75rem;
-            margin-top: 1.1rem;
-        }
+.hero-full-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
 
-        .hero-stat {
-            padding: 0.85rem 0.9rem;
-            border-radius: 0.9rem;
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
+.hero-full-meta-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(248, 250, 252, 0.9);
+}
 
-        .hero-stat-label {
-            font-size: 0.75rem;
-            color: #6b7280;
-        }
+/* arrows */
+.hero-full-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.7);
+    color: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
 
-        .hero-stat-value {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-top: 0.1rem;
-        }
+.hero-full-arrow.prev {
+    left: 1.2rem;
+}
 
-        .hero-tagline {
-            margin-top: 1.1rem;
-            font-size: 0.8rem;
-            color: #4b5563;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
+.hero-full-arrow.next {
+    right: 1.2rem;
+}
+
+.hero-full-arrow:hover {
+    background: rgba(15, 23, 42, 0.95);
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* dots */
+.hero-full-dots {
+    position: absolute;
+    bottom: 1.4rem;
+    right: 2rem;
+    z-index: 5;
+    display: flex;
+    gap: 0.45rem;
+}
+
+.hero-full-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(148, 163, 184, 0.85);
+    cursor: pointer;
+    padding: 0;
+    transition: width 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-full-dot.active {
+    width: 18px;
+    background: #f97316;
+    transform: translateY(-1px);
+}
+
+/* responsive tweaks */
+@media (max-width: 900px) {
+    .hero-full-slider {
+        height: clamp(320px, 65vh, 520px);
+    }
+
+    .hero-full-content {
+        left: 1.4rem;
+        right: 1.4rem;
+        bottom: 1.6rem;
+        max-width: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-full-content {
+        padding: 1.1rem 1.3rem;
+        border-radius: 1rem;
+    }
+
+    .hero-full-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-full-text {
+        font-size: 0.9rem;
+    }
+
+    .hero-full-arrow.prev {
+        left: 0.7rem;
+    }
+
+    .hero-full-arrow.next {
+        right: 0.7rem;
+    }
+
+    .hero-full-dots {
+        right: 1.2rem;
+        bottom: 1.1rem;
+    }
+}
+
 
         /* Sections */
         section {
@@ -943,66 +1025,91 @@
         </nav>
     </div>
 </header>
-
-<!-- Hero -->
+ <!-- Hero -->
 <main>
-    <section class="hero">
-        <div>
-            <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                <span class="hero-badge-label">Illinois asphalt industry hub</span>
+ <section class="hero-full">
+        <div class="hero-full-slider" data-hero-full>
+            <!-- Slide 1 -->
+            <div class="hero-full-slide active">
+                <img src="https://www.il-asphalt.org/files/6014/7275/7852/Safe_Roads_GA.jpg" alt="Freshly paved Illinois highway at sunset">
+                 <div class="hero-full-content">
+                    <div class="hero-full-badge">Illinois Asphalt Industry Hub</div>
+                    <h1 class="hero-full-title">
+                        Advancing <span class="highlight">quality asphalt pavements</span> across Illinois.
+                    </h1>
+                    <p class="hero-full-text">
+                        IAPA brings producers, contractors, suppliers, and partners together to support
+                        research, technical guidance, and training for safe, smooth, and sustainable
+                        asphalt pavements statewide.
+                    </p>
+                    <div class="hero-full-actions">
+                        <button class="btn btn-primary">Explore Membership</button>
+                        <button class="btn btn-outline">Annual Conference</button>
+                    </div>
+                    <div class="hero-full-meta">
+                        <span><span class="hero-full-meta-dot"></span> Nonprofit trade association (501(c)(6))</span>
+                        <span><span class="hero-full-meta-dot"></span> Serving Illinois since 1938</span>
+                        <span><span class="hero-full-meta-dot"></span> Technical, training &amp; advocacy support</span>
+                    </div>
+                </div>
             </div>
-            <h1 class="hero-title">
-                Advancing <span class="highlight">quality asphalt pavements</span> across Illinois.
-            </h1>
-            <p class="hero-text">
-                The Illinois Asphalt Pavement Association brings producers, contractors, suppliers,
-                and partners together to promote best practices, support research, and deliver safe,
-                smooth, and sustainable asphalt pavements statewide.
-            </p>
 
-            <div class="hero-actions">
-                <button class="btn btn-primary">Explore Membership</button>
-                <button class="btn btn-outline">Annual Convention</button>
+            <!-- Slide 2 -->
+            <div class="hero-full-slide">
+                <img src="https://www.il-asphalt.org/files/1614/4545/3049/1501_RT_45.JPG" alt="Paving crew working on roadway in Illinois">
+                 <div class="hero-full-content">
+            
+                </div>
             </div>
 
-            <div class="hero-meta">
-                <span><span class="hero-meta-dot"></span> Nonprofit trade association (501(c)(6))</span>
-                <span><span class="hero-meta-dot"></span> Serving Illinois since 1938</span>
-                <span><span class="hero-meta-dot"></span> Technical, training & advocacy support</span>
+            <!-- Slide 3 -->
+            <div class="hero-full-slide">
+                <img src="https://www.il-asphalt.org/files/5114/4018/2776/20150806_155235.jpg" alt="City street and asphalt pavement at night">
+                 <div class="hero-full-content">
+                
+                </div>
             </div>
+
+             <!-- Slide 4 -->
+            <div class="hero-full-slide">
+                <img src="https://www.il-asphalt.org/files/3214/4545/3072/1459_RT_1.JPG" alt="City street and asphalt pavement at night">
+                 <div class="hero-full-content">
+              
+                </div>
+            </div>
+             <!-- Slide 5 -->
+            <div class="hero-full-slide">
+                <img src="https://www.il-asphalt.org/files/5014/7638/7165/ETSafeRoads.jpg" alt="City street and asphalt pavement at night">
+                 <div class="hero-full-content">
+                 
+                </div>
+            </div>
+             <!-- Slide 6 -->
+            <div class="hero-full-slide">
+                <img src="https://www.il-asphalt.org/files/2214/9373/0125/NightPaving.JPG" alt="City street and asphalt pavement at night">
+                 <div class="hero-full-content">
+                   
+                </div>
+            </div>
+            <!-- arrows -->
+            <button class="hero-full-arrow prev" type="button" aria-label="Previous slide">‹</button>
+            <button class="hero-full-arrow next" type="button" aria-label="Next slide">›</button>
+
+            <!-- dots -->
+       <!-- dots -->
+<div class="hero-full-dots">
+    <button class="hero-full-dot active" type="button" aria-label="Slide 1"></button>
+    <button class="hero-full-dot" type="button" aria-label="Slide 2"></button>
+    <button class="hero-full-dot" type="button" aria-label="Slide 3"></button>
+    <button class="hero-full-dot" type="button" aria-label="Slide 4"></button>
+    <button class="hero-full-dot" type="button" aria-label="Slide 5"></button>
+    <button class="hero-full-dot" type="button" aria-label="Slide 6"></button>
+</div>
+
         </div>
-
-        <aside class="hero-card">
-            <div class="hero-card-title">At-a-Glance</div>
-            <p style="font-size: 0.86rem; color:#4b5563; margin:0.3rem 0 0.6rem;">
-                A quick view of how IAPA supports owners, designers, and industry members.
-            </p>
-
-            <div class="hero-grid">
-                <div class="hero-stat">
-                    <div class="hero-stat-label">Focus Areas</div>
-                    <div class="hero-stat-value">Specs • Safety • Sustainability</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-label">Key Audiences</div>
-                    <div class="hero-stat-value">Owners & Designers</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-label">Resources</div>
-                    <div class="hero-stat-value">Design • Training • Webinars</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-label">Partners</div>
-                    <div class="hero-stat-value">State & National Associations</div>
-                </div>
-            </div>
-
-            <div class="hero-tagline">
-                <span>⬤</span> Partnering with agencies, engineers, and industry to keep Illinois moving.
-            </div>
-        </aside>
     </section>
+
+
 
     <!-- About -->
     <section id="about">
@@ -1397,8 +1504,75 @@
 
 <script>
     // Set current year in footer
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+
+    // FULL HERO SLIDESHOW
+    (function () {
+        const slider = document.querySelector("[data-hero-full]");
+        if (!slider) return;
+
+        const slides = slider.querySelectorAll(".hero-full-slide");
+        const dots   = slider.querySelectorAll(".hero-full-dot");
+        const prev   = slider.querySelector(".hero-full-arrow.prev");
+        const next   = slider.querySelector(".hero-full-arrow.next");
+
+        let current = 0;
+        let timer;
+
+        function showSlide(index) {
+            slides[current].classList.remove("active");
+            dots[current].classList.remove("active");
+
+            current = index;
+            if (current < 0) current = slides.length - 1;
+            if (current >= slides.length) current = 0;
+
+            slides[current].classList.add("active");
+            dots[current].classList.add("active");
+        }
+
+        function goNext() {
+            showSlide(current + 1);
+        }
+
+        function goPrev() {
+            showSlide(current - 1);
+        }
+
+        function startAuto() {
+            timer = setInterval(goNext, 7000); // 7s per slide
+        }
+
+        function stopAuto() {
+            clearInterval(timer);
+        }
+
+        // arrows
+        if (next) next.addEventListener("click", () => { stopAuto(); goNext(); startAuto(); });
+        if (prev) prev.addEventListener("click", () => { stopAuto(); goPrev(); startAuto(); });
+
+        // dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => {
+                stopAuto();
+                showSlide(index);
+                startAuto();
+            });
+        });
+
+        // pause on hover
+        slider.addEventListener("mouseenter", stopAuto);
+        slider.addEventListener("mouseleave", startAuto);
+
+        // init
+        showSlide(0);
+        startAuto();
+    })();
 </script>
+
 
 </body>
 </html>
