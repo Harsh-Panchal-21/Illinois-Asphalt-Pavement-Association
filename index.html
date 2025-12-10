@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Illinois Asphalt Pavement Association | IAPA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary: #1d4f91;
+            --primary-dark: #133460;
+            --accent: #f3991d;
+            --bg-light: #f5f7fb;
+            --bg-section: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border-subtle: #e5e7eb;
+            --radius-lg: 14px;
+            --shadow-soft: 0 14px 35px rgba(15, 23, 42, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            sans-serif;
+            color: var(--text-main);
+            background: radial-gradient(circle at top left, #e5edf9 0, #f9fafb 45%, #eef2ff 100%);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Top contact bar */
+        .top-bar {
+            background: var(--primary-dark);
+            color: #e5e7eb;
+            font-size: 0.9rem;
+        }
+
+        .top-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.4rem 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .top-bar-left,
+        .top-bar-right {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        .top-bar-item {
+            display: inline-flex;
+            gap: 0.45rem;
+            align-items: center;
+        }
+
+        .top-bar-item span.icon {
+            font-size: 0.9rem;
+        }
+
+        .top-bar a {
+            color: #e5e7eb;
+            opacity: 0.9;
+        }
+
+        .top-bar a:hover {
+            opacity: 1;
+        }
+
+        /* Header & Nav */
+        header {
+            backdrop-filter: blur(18px);
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid rgba(209, 213, 219, 0.6);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+.brand-logo {
+    width: 100px;
+    height: 65px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.brand-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+        .brand-text-title {
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        .brand-text-sub {
+            font-size: 0.77rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.25rem;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a {
+            padding: 0.35rem 0.1rem;
+            position: relative;
+            color: #4b5563;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.18rem;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 999px;
+            transition: width 0.25s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .btn {
+            border-radius: 999px;
+            border: none;
+            padding: 0.6rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: transform 0.15s ease, box-shadow 0.15s ease,
+                        background 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #f9fafb;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 35px rgba(15, 23, 42, 0.4);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(148, 163, 184, 0.9);
+            background: transparent;
+            color: #374151;
+        }
+
+        .btn-outline:hover {
+            background: rgba(226, 232, 240, 0.6);
+        }
+
+        /* Mobile nav toggle */
+        .nav-toggle {
+            display: none;
+            border: none;
+            background: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 1200px;
+            margin: 1.5rem auto 2.5rem;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.15rem 0.3rem;
+            border-radius: 999px;
+            background: rgba(17, 24, 39, 0.04);
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            gap: 0.3rem;
+            font-size: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #22c55e;
+        }
+
+        .hero-badge-label {
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-weight: 600;
+            color: #4b5563;
+        }
+
+        .hero-title {
+            font-size: clamp(2.1rem, 3.2vw + 1rem, 3.1rem);
+            line-height: 1.12;
+            margin: 0 0 1rem;
+        }
+
+        .hero-title span.highlight {
+            background: linear-gradient(120deg, #f97316, #fb923c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-text {
+            font-size: 0.98rem;
+            max-width: 34rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            align-items: center;
+        }
+
+        .hero-meta {
+            margin-top: 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.83rem;
+            color: #6b7280;
+        }
+
+        .hero-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .hero-meta-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #e5e7eb;
+        }
+
+        .hero-card {
+            background: radial-gradient(circle at top left, #e5f0ff 0, #ffffff 45%, #fdf2e9 100%);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-soft);
+            padding: 1.6rem 1.7rem;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+        }
+
+        .hero-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 1.1rem;
+        }
+
+        .hero-stat {
+            padding: 0.85rem 0.9rem;
+            border-radius: 0.9rem;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .hero-stat-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .hero-stat-value {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-top: 0.1rem;
+        }
+
+        .hero-tagline {
+            margin-top: 1.1rem;
+            font-size: 0.8rem;
+            color: #4b5563;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 2.2rem 1.5rem;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 30rem;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(15, 23, 42, 0.04);
+            border-radius: 999px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.8rem;
+            color: #4b5563;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 1.8rem;
+            background: var(--bg-section);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+            border: 1px solid rgba(209, 213, 219, 0.8);
+            padding: 1.7rem 1.8rem;
+        }
+
+        .about-text p {
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .about-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.6rem 0 0;
+        }
+
+        .about-list li {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+            font-size: 0.92rem;
+            margin-bottom: 0.45rem;
+            color: #4b5563;
+        }
+
+        .about-list li span.bullet {
+            margin-top: 0.3rem;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .about-aside {
+            border-radius: 1rem;
+            background: radial-gradient(circle at top, #eff6ff 0, #ffffff 38%, #f9fafb 100%);
+            padding: 1rem 1.1rem;
+            border: 1px dashed rgba(148, 163, 184, 0.9);
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+
+        .about-aside h4 {
+            margin: 0 0 0.4rem;
+            font-size: 0.95rem;
+        }
+
+        .about-aside dl {
+            margin: 0.4rem 0 0;
+        }
+
+        .about-aside dt {
+            font-weight: 600;
+            margin-top: 0.35rem;
+        }
+
+        .about-aside dd {
+            margin: 0.1rem 0 0.2rem;
+        }
+
+        /* 3-column cards (Membership / Asphalt Info / Resources) */
+        .three-col-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.4rem;
+        }
+
+        .card {
+            background: var(--bg-section);
+            border-radius: var(--radius-lg);
+            padding: 1.3rem 1.3rem 1.25rem;
+            border: 1px solid rgba(209, 213, 219, 0.8);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+        }
+
+        .card-header-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            background: rgba(29, 79, 145, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            margin: 0;
+            font-size: 1.02rem;
+            font-weight: 600;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0.5rem 0 0.7rem;
+        }
+
+        .card-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 0.85rem;
+        }
+
+        .card-links li + li {
+            margin-top: 0.18rem;
+        }
+
+        .card-links a {
+            color: var(--primary-dark);
+        }
+
+        .card-links a::before {
+            content: "› ";
+            opacity: 0.7;
+        }
+
+        /* Events & Sponsors */
+        .events-sponsors {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 1.6rem;
+        }
+
+        .events-list {
+            background: var(--bg-section);
+            border-radius: var(--radius-lg);
+            padding: 1.3rem 1.4rem;
+            border: 1px solid rgba(209, 213, 219, 0.9);
+        }
+
+        .events-list h3 {
+            margin: 0 0 0.3rem;
+            font-size: 1rem;
+        }
+
+        .event-item {
+            padding: 0.65rem 0;
+            border-bottom: 1px dashed #e5e7eb;
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .event-item:last-child {
+            border-bottom: none;
+        }
+
+        .event-date {
+            min-width: 3.2rem;
+            text-align: center;
+            border-radius: 0.7rem;
+            border: 1px solid rgba(148, 163, 184, 0.8);
+            padding: 0.3rem 0.45rem;
+            font-size: 0.75rem;
+        }
+
+        .event-date span.month {
+            display: block;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            font-size: 0.7rem;
+            color: #6b7280;
+        }
+
+        .event-date span.day {
+            display: block;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .event-body {
+            font-size: 0.9rem;
+        }
+
+        .event-title {
+            font-weight: 600;
+        }
+
+        .event-meta {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .events-footer {
+            margin-top: 0.7rem;
+            font-size: 0.82rem;
+            color: #4b5563;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .sponsors {
+            background: var(--bg-section);
+            border-radius: var(--radius-lg);
+            padding: 1.3rem 1.4rem;
+            border: 1px solid rgba(209, 213, 219, 0.9);
+            font-size: 0.9rem;
+        }
+
+        .sponsor-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 0.7rem;
+        }
+
+        .sponsor-pill {
+            border-radius: 999px;
+            padding: 0.45rem 0.85rem;
+            border: 1px solid rgba(209, 213, 219, 0.9);
+            background: #f9fafb;
+            font-size: 0.8rem;
+        }
+
+        /* Contact & Footer */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+            gap: 1.8rem;
+        }
+
+        .contact-card {
+            background: var(--bg-section);
+            border-radius: var(--radius-lg);
+            padding: 1.6rem 1.5rem;
+            border: 1px solid rgba(209, 213, 219, 0.9);
+            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.18);
+        }
+
+        .contact-card h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            font-size: 0.9rem;
+            margin: 0.4rem 0;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            min-width: 4.5rem;
+        }
+
+        .contact-note {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-top: 0.4rem;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 0.75rem;
+            margin-top: 0.6rem;
+        }
+
+        .field {
+            display: grid;
+            gap: 0.25rem;
+            font-size: 0.85rem;
+        }
+
+        .field label {
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .field input,
+        .field textarea {
+            border-radius: 0.7rem;
+            border: 1px solid rgba(209, 213, 219, 0.9);
+            padding: 0.5rem 0.7rem;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            background: #f9fafb;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
+            background: #ffffff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .map-card {
+            background: radial-gradient(circle at top, #e5f0ff 0, #ffffff 45%, #f9fafb 100%);
+            border-radius: var(--radius-lg);
+            padding: 1rem 1.1rem;
+            border: 1px solid rgba(209, 213, 219, 0.9);
+            font-size: 0.85rem;
+            color: #4b5563;
+        }
+
+        .map-placeholder {
+            margin-top: 0.8rem;
+            border-radius: 0.9rem;
+            border: 1px dashed rgba(148, 163, 184, 0.9);
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        footer {
+            border-top: 1px solid rgba(209, 213, 219, 0.9);
+            padding: 1.3rem 1.5rem 1.6rem;
+            background: #f9fafb;
+            font-size: 0.85rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            align-items: center;
+            justify-content: space-between;
+            color: #6b7280;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .footer-links a {
+            color: #4b5563;
+        }
+
+         
+
+/* ✅ MOBILE OPTIMIZATION */
+@media (max-width: 600px) {
+    #partners .partners-strip {
+        padding: 1.4rem;
+    }
+
+    #partners .partner-logo {
+        height: 95px;
+    }
+
+    #partners .partner-logo img {
+        max-height: 60px;
+    }
+}
+
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .about-grid,
+            .events-sponsors,
+            .contact-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-card {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 800px) {
+            nav {
+                position: absolute;
+                inset-inline: 0;
+                top: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                border-bottom: 1px solid rgba(209, 213, 219, 0.9);
+                padding: 0.6rem 1.1rem 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+                transform-origin: top;
+                transform: scaleY(0);
+                opacity: 0;
+                pointer-events: none;
+                transition: transform 0.18s ease, opacity 0.18s ease;
+            }
+
+            nav.open {
+                transform: scaleY(1);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-cta {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 750px) {
+            .three-col-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 560px) {
+            .top-bar-inner {
+                justify-content: center;
+            }
+
+            .three-col-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .about-grid {
+                padding: 1.2rem 1.1rem;
+            }
+
+            .contact-card {
+                padding: 1.2rem 1.1rem;
+            }
+        }
+
+    
+
+    </style>
+
+    <script>
+        // Mobile nav toggle
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggle = document.querySelector(".nav-toggle");
+            const nav = document.querySelector("header nav");
+
+            toggle.addEventListener("click", () => {
+                nav.classList.toggle("open");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<!-- Top contact bar -->
+<div class="top-bar">
+    <div class="top-bar-inner">
+        <div class="top-bar-left">
+            <div class="top-bar-item">
+                <span class="icon">📞</span>
+                <span>(217) 523-2208</span>
+            </div>
+            <div class="top-bar-item">
+                <span class="icon">📍</span>
+                <span>241 North 5th Street, Springfield, IL 62701</span>
+            </div>
+        </div>
+        <div class="top-bar-right">
+            <div class="top-bar-item">
+                <span class="icon">👤</span>
+                <a href="#">Member Login</a>
+            </div>
+            <div class="top-bar-item">
+                <span class="icon">✉</span>
+                <a href="mailto:info@il-asphalt.org">info@il-asphalt.org</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Header / Navigation -->
+<header>
+    <div class="nav-inner">
+       <a href="index.html" class="brand">
+<div class="brand-logo">
+    <img src="https://www.il-asphalt.org/packages/ilasphalt/themes/ilasphalt/assets/dist/images/logo_sm.png"
+         alt="Illinois Asphalt Pavement Association Logo">
+</div>
+
+    <div>
+        <div class="brand-text-title">Illinois Asphalt Pavement Association</div>
+        <div class="brand-text-sub">Hot Mix Asphalt • Since 1938</div>
+    </div>
+</a>
+
+
+        <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+        <nav>
+          <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#membership">Membership</a>
+    <a href="#asphalt-info">Asphalt Info</a>
+    <a href="#resources">Resources</a>
+    <a href="#partners">Partners</a>
+    <a href="#events">Events</a>
+    <a href="#contact">Contact</a>
+</div>
+
+            <div class="nav-cta">
+                <button class="btn btn-outline">Find a Member</button>
+                <button class="btn btn-primary">
+                    Join IAPA
+                </button>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero -->
+<main>
+    <section class="hero">
+        <div>
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                <span class="hero-badge-label">Illinois asphalt industry hub</span>
+            </div>
+            <h1 class="hero-title">
+                Advancing <span class="highlight">quality asphalt pavements</span> across Illinois.
+            </h1>
+            <p class="hero-text">
+                The Illinois Asphalt Pavement Association brings producers, contractors, suppliers,
+                and partners together to promote best practices, support research, and deliver safe,
+                smooth, and sustainable asphalt pavements statewide.
+            </p>
+
+            <div class="hero-actions">
+                <button class="btn btn-primary">Explore Membership</button>
+                <button class="btn btn-outline">Annual Convention</button>
+            </div>
+
+            <div class="hero-meta">
+                <span><span class="hero-meta-dot"></span> Nonprofit trade association (501(c)(6))</span>
+                <span><span class="hero-meta-dot"></span> Serving Illinois since 1938</span>
+                <span><span class="hero-meta-dot"></span> Technical, training & advocacy support</span>
+            </div>
+        </div>
+
+        <aside class="hero-card">
+            <div class="hero-card-title">At-a-Glance</div>
+            <p style="font-size: 0.86rem; color:#4b5563; margin:0.3rem 0 0.6rem;">
+                A quick view of how IAPA supports owners, designers, and industry members.
+            </p>
+
+            <div class="hero-grid">
+                <div class="hero-stat">
+                    <div class="hero-stat-label">Focus Areas</div>
+                    <div class="hero-stat-value">Specs • Safety • Sustainability</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-label">Key Audiences</div>
+                    <div class="hero-stat-value">Owners & Designers</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-label">Resources</div>
+                    <div class="hero-stat-value">Design • Training • Webinars</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-label">Partners</div>
+                    <div class="hero-stat-value">State & National Associations</div>
+                </div>
+            </div>
+
+            <div class="hero-tagline">
+                <span>⬤</span> Partnering with agencies, engineers, and industry to keep Illinois moving.
+            </div>
+        </aside>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="section-inner">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">About IAPA</h2>
+                    <p class="section-subtitle">
+                        Learn who we are, how we started, and what drives our mission to improve asphalt
+                        pavements throughout Illinois.
+                    </p>
+                </div>
+                <span class="pill">Founded in 1938 • Statewide impact</span>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        The Illinois Asphalt Pavement Association is a statewide trade association
+                        representing hot mix asphalt producers and allied companies. The association
+                        serves as a central resource and communication link for agencies, engineers,
+                        contractors, and suppliers involved in asphalt pavement design, construction,
+                        and maintenance.
+                    </p>
+                    <p>
+                        Today, IAPA promotes the use of high-quality asphalt pavements through research,
+                        technical assistance, education, and advocacy, helping owners and designers
+                        understand the performance, safety, and economic benefits of asphalt.
+                    </p>
+
+                    <ul class="about-list">
+                        <li>
+                            <span class="bullet"></span>
+                            <span>Advance quality asphalt pavement construction across Illinois.</span>
+                        </li>
+                        <li>
+                            <span class="bullet"></span>
+                            <span>Support members with technical, environmental, and regulatory guidance.</span>
+                        </li>
+                        <li>
+                            <span class="bullet"></span>
+                            <span>Educate owners and designers on asphalt pavement design and benefits.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <aside class="about-aside">
+                    <h4>Association Snapshot</h4>
+                    <p>
+                        IAPA has evolved over the decades to reflect changes in the industry while
+                        staying focused on high-performing asphalt pavements.
+                    </p>
+                    <dl>
+                        <dt>Original Name</dt>
+                        <dd>Illinois Bituminous Distributors (1938)</dd>
+
+                        <dt>Past Name</dt>
+                        <dd>Illinois Blacktop Roads Association (from 1941)</dd>
+
+                        <dt>Current Name</dt>
+                        <dd>Illinois Asphalt Pavement Association (since 1967)</dd>
+                    </dl>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership / Asphalt Info / Resources -->
+    <section id="membership">
+        <div class="section-inner">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Membership & Industry Resources</h2>
+                    <p class="section-subtitle">
+                        IAPA brings together producers, contractors, suppliers, and partners, while
+                        providing technical information, design guidance, and training for the asphalt
+                        community.
+                    </p>
+                </div>
+            </div>
+
+            <div class="three-col-grid">
+                <!-- Membership -->
+                <div class="card">
+                    <div class="card-header-icon">👥</div>
+                    <h3 class="card-title">Membership</h3>
+                    <p class="card-text">
+                        Join a network of asphalt producers, contractors, and associates working
+                        together to strengthen the industry and improve pavements across Illinois.
+                    </p>
+                    <ul class="card-links">
+                        <li><a href="#">Membership Benefits</a></li>
+                        <li><a href="#">Membership Categories</a></li>
+                        <li><a href="#">Current Members</a></li>
+                        <li><a href="#">Fee Schedule</a></li>
+                    </ul>
+                </div>
+
+                <!-- Asphalt Info -->
+                <div class="card" id="asphalt-info">
+                    <div class="card-header-icon">🛣</div>
+                    <h3 class="card-title">Asphalt Information</h3>
+                    <p class="card-text">
+                        Guidance for airports, highways, parking lots, driveways, bike paths, and
+                        more, plus FAQs and terminology for owners and designers.
+                    </p>
+                    <ul class="card-links">
+                        <li><a href="#">Asphalt FAQs</a></li>
+                        <li><a href="#">Private &amp; Commercial Applications</a></li>
+                        <li><a href="#">Why Asphalt? (Benefits &amp; Economics)</a></li>
+                        <li><a href="#">Webinars &amp; Virtual Training</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="card" id="resources">
+                    <div class="card-header-icon">📚</div>
+                    <h3 class="card-title">Technical Resources</h3>
+                    <p class="card-text">
+                        Explore environmental, health, and safety topics, pavement technologies,
+                        research, and links to key state and federal agencies.
+                    </p>
+                    <ul class="card-links">
+                        <li><a href="#">Environmental, Health &amp; Safety</a></li>
+                        <li><a href="#">Pavement Design &amp; Technologies</a></li>
+                        <li><a href="#">Illinois DOT Links</a></li>
+                        <li><a href="#">Legislative &amp; Partner Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Partners -->
+<section id="partners">
+    <div class="section-inner">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">Partners</h2>
+                <p class="section-subtitle">
+                    The Illinois Asphalt Pavement Association works closely with other state and
+                    national associations on common issues affecting the asphalt industry.
+                </p>
+            </div>
+        </div>
+
+        <div class="partners-strip">
+            <div class="partners-text">
+                <p>
+                    Through collaboration with our partners, we share best practices, coordinate
+                    on legislative and technical topics, and strengthen the voice of the asphalt
+                    industry in Illinois and beyond.
+                </p>
+                <p>
+                    Select a logo below to visit the partner’s website. For a complete list of
+                    partners, please visit our dedicated <a href="#">PARTNERS page</a>.
+                </p>
+            </div>
+
+            <div class="partners-logos">
+                <a href="#" class="partner-logo" title="Asphalt Pavement Alliance">
+                    <img src="https://www.il-asphalt.org/files/3714/4682/5368/APA_Logo_Color.png"
+                         alt="Asphalt Pavement Alliance">
+                </a>
+                <a href="#" class="partner-logo" title="Illinois Association of Aggregate Producers">
+                    <img src="https://www.il-asphalt.org/files/9014/4527/6093/IAAP.gif"
+                         alt="Illinois Association of Aggregate Producers">
+                </a>
+                <a href="#" class="partner-logo" title="Illinois Road &amp; Transportation Builders">
+                    <img src="https://www.il-asphalt.org/files/8914/4527/6093/IRTBA.png"
+                         alt="Illinois Road and Transportation Builders">
+                </a>
+                <a href="#" class="partner-logo" title="AGC of Illinois">
+                    <img src="https://www.il-asphalt.org/files/5314/4527/6092/AGC-IL.jpg"
+                         alt="AGC of Illinois">
+                </a>
+                <a href="#" class="partner-logo" title="ACEC Illinois">
+                    <img src="https://www.il-asphalt.org/files/2114/4527/6092/ACEC-IL.jpg"
+                         alt="ACEC Illinois">
+                </a>
+                <a href="#" class="partner-logo" title="Transportation for Illinois Coalition">
+                    <img src="https://www.il-asphalt.org/files/6014/4796/1242/TFIC.jpg"
+                         alt="Transportation for Illinois Coalition">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Events & Sponsors -->
+    <section id="events">
+        <div class="section-inner">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Events & Premier Sponsors</h2>
+                    <p class="section-subtitle">
+                        Stay current on IAPA’s annual convention, technical workshops, and training
+                        opportunities, and meet the organizations supporting our mission.
+                    </p>
+                </div>
+            </div>
+
+            <div class="events-sponsors">
+                <!-- Events -->
+                <div class="events-list">
+                    <h3>Upcoming Events</h3>
+
+                    <!-- Replace sample events with dynamic event data or CMS output -->
+                    <article class="event-item">
+                        <div class="event-date">
+                            <span class="month">Jan</span>
+                            <span class="day">21</span>
+                        </div>
+                        <div class="event-body">
+                            <div class="event-title">Annual Asphalt Conference</div>
+                            <div class="event-meta">
+                                Springfield, IL • Technical sessions, exhibits, and networking
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="event-item">
+                        <div class="event-date">
+                            <span class="month">Mar</span>
+                            <span class="day">05</span>
+                        </div>
+                        <div class="event-body">
+                            <div class="event-title">Virtual Training: Perpetual Pavements</div>
+                            <div class="event-meta">
+                                Online webinar • Design concepts &amp; case studies
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="event-item">
+                        <div class="event-date">
+                            <span class="month">Jun</span>
+                            <span class="day">12</span>
+                        </div>
+                        <div class="event-body">
+                            <div class="event-title">Environmental, Health &amp; Safety Workshop</div>
+                            <div class="event-meta">
+                                Compliance updates and best practices for asphalt facilities
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="events-footer">
+                        <span>Looking for more? View the full association calendar.</span>
+                        <button class="btn btn-outline">View All Events</button>
+                    </div>
+                </div>
+
+                <!-- Sponsors -->
+                <aside class="sponsors">
+                    <h3>Premier Sponsors</h3>
+                    <p>
+                        IAPA gratefully acknowledges the support of our premier sponsors whose
+                        commitment helps advance education, research, and outreach throughout the
+                        state.
+                    </p>
+                    <!-- Replace pills with sponsor logos or linked images -->
+                    <div class="sponsor-logos">
+                        <div class="sponsor-pill">Altorfer</div>
+                        <div class="sponsor-pill">Roland Machinery</div>
+                        <div class="sponsor-pill">Women of Asphalt Illinois</div>
+                        <div class="sponsor-pill">Industry Partners</div>
+                    </div>
+                    <p style="margin-top:0.9rem; font-size:0.82rem; color:#6b7280;">
+                        Want to feature your company here? Ask about sponsorship opportunities for the
+                        annual convention and educational programs.
+                    </p>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="section-inner">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Contact IAPA</h2>
+                    <p class="section-subtitle">
+                        Have questions about membership, technical resources, training, or upcoming
+                        events? We’re here to help.
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Info & Form -->
+                <div class="contact-card">
+                    <h3>Get in touch</h3>
+
+                    <div class="contact-row">
+                        <div class="contact-label">Phone</div>
+                        <div>(217) 523-2208</div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-label">Email</div>
+                        <div>
+                            <a href="mailto:info@il-asphalt.org">info@il-asphalt.org</a>
+                        </div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-label">Address</div>
+                        <div>241 North 5th Street, Springfield, IL 62701</div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-label">Hours</div>
+                        <div>Monday – Friday: 8:00 AM – 5:00 PM (CST)</div>
+                    </div>
+
+                    <p class="contact-note">
+                        Use the form below to send a general inquiry. For membership applications or
+                        event registration, please refer to the appropriate sections of the website.
+                    </p>
+
+                    <!-- Static form (wire to backend later) -->
+                    <form class="contact-form">
+                        <div class="field">
+                            <label for="name">Name</label>
+                            <input id="name" type="text" placeholder="First &amp; last name">
+                        </div>
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" placeholder="name@example.com">
+                        </div>
+                        <div class="field">
+                            <label for="topic">Topic</label>
+                            <input id="topic" type="text" placeholder="Membership, technical support, events, etc.">
+                        </div>
+                        <div class="field">
+                            <label for="message">Message</label>
+                            <textarea id="message" placeholder="How can we help?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Map / Location -->
+                <aside class="map-card">
+                    <h3>Visit Our Office</h3>
+                    <p>
+                        Located in downtown Springfield, our office serves as a resource center for
+                        members, agencies, and partners across Illinois.
+                    </p>
+
+                    <div class="map-placeholder" style="padding:0; border:none;">
+    <iframe
+        src="https://www.google.com/maps?q=241%20North%205th%20Street,%20Springfield,%20IL%2062701&output=embed"
+        width="100%"
+        height="200"
+        style="border-radius:12px; border:1px solid #e5e7eb;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+
+
+                    <p style="margin-top:0.8rem;">
+                        You can schedule a meeting to discuss technical issues, upcoming projects,
+                        or membership opportunities. Please call ahead to confirm availability.
+                    </p>
+                </aside>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            © <span id="year"></span> Illinois Asphalt Pavement Association. All rights reserved.
+        </div>
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#membership">Membership</a>
+            <a href="#asphalt-info">Asphalt Info</a>
+            <a href="#resources">Resources</a>
+            <a href="#events">Events</a>
+            <a href="#">Legal</a>
+        </div>
+        <div>
+            Website design by <strong>King Technologies, Inc</strong>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
